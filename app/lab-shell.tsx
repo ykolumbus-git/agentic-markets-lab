@@ -12,7 +12,7 @@ const navigation = [
   { href: "/research", label: "Research", section: "research" },
   { href: "/people", label: "People", section: "people" },
   { href: "/about", label: "About", section: "about" },
-  { href: "/join", label: "Join", section: "join" },
+  { href: "/join", label: "Join us", section: "join" },
 ] as const;
 
 export function LabHeader({ active, inverse = false }: { active: LabSection; inverse?: boolean }) {
@@ -33,7 +33,10 @@ export function LabHeader({ active, inverse = false }: { active: LabSection; inv
       <nav className={styles.primaryNav} aria-label="Main navigation">
         {navigation.map((item) => (
           <Link
-            className={active === item.section ? styles.activeNav : undefined}
+            className={[
+              active === item.section ? styles.activeNav : "",
+              item.section === "join" ? styles.joinNav : "",
+            ].filter(Boolean).join(" ") || undefined}
             href={item.href}
             key={item.href}
             aria-current={active === item.section ? "page" : undefined}

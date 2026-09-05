@@ -6,7 +6,7 @@ import styles from "./lab.module.css";
 const portals = [
   { index: "01", href: "/research", label: "Research" },
   { index: "02", href: "/about", label: "About" },
-  { index: "03", href: "/join", label: "Join the lab", note: "Take part in establishing the new lab" },
+  { index: "03", href: "/join", label: "Join the lab", status: "Now recruiting PhD students and postdocs.", note: "Take part in establishing the new lab" },
 ] as const;
 
 export default function Home() {
@@ -36,10 +36,11 @@ export default function Home() {
         <UnitDistanceArtwork />
         <nav className={styles.homeIndex} aria-label="Explore the lab">
           {portals.map((portal) => (
-            <Link className={styles.homePortal} href={portal.href} key={portal.href}>
+            <Link className={`${styles.homePortal} ${portal.href === "/join" ? styles.homeJoin : ""}`} href={portal.href} key={portal.href}>
               <span className={styles.portalNumber}>{portal.index}</span>
               <span className={styles.portalCopy}>
                 <strong className={styles.portalLabel}>{portal.label}</strong>
+                {"status" in portal && <small className={styles.portalStatus}>{portal.status}</small>}
                 {"note" in portal && portal.note && <small className={styles.portalNote}>{portal.note}</small>}
               </span>
               <span className={styles.portalArrow} aria-hidden="true">↗</span>

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { principalInvestigatorUrl } from "../content";
 import { PageFrame } from "../lab-shell";
+import portrait from "../assets/yoav-kolumbus.jpg";
 import styles from "../lab.module.css";
 
 export const metadata: Metadata = {
@@ -24,9 +26,14 @@ export default function PeoplePage() {
 
         <div className={styles.peoplePiLine}>
           <span>Principal Investigator:</span>
-          <a href={principalInvestigatorUrl} target="_blank" rel="noreferrer">
-            Yoav Kolumbus <ArrowUpRight aria-hidden="true" />
-          </a>
+          <div className={styles.peopleIdentity}>
+            <span className={styles.peoplePortrait}>
+              <Image src={portrait} alt="Yoav Kolumbus" sizes="72px" />
+            </span>
+            <a href={principalInvestigatorUrl} target="_blank" rel="noreferrer">
+              Yoav Kolumbus <ArrowUpRight aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
     </PageFrame>

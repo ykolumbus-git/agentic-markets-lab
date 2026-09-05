@@ -135,8 +135,7 @@
 
 .home {
   position: relative;
-  height: 100svh;
-  min-height: 0;
+  min-height: 100svh;
   overflow: hidden;
   background:
     radial-gradient(circle at 77% 9%, rgba(64, 93, 255, .32), transparent 31%),
@@ -153,6 +152,8 @@
   left: 0;
   border-color: transparent;
 }
+
+.home .primaryNav .joinNav { color: var(--lime); }
 
 .observatoryBackdrop {
   position: absolute;
@@ -287,13 +288,15 @@
 }
 
 .homeStage {
-  position: absolute;
+  position: relative;
   z-index: 3;
-  top: 88px;
-  right: clamp(14px, 2vw, 34px);
-  bottom: clamp(14px, 2vw, 34px);
-  left: clamp(14px, 2vw, 34px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vh, 40px);
+  min-height: calc(100svh - 88px - clamp(14px, 2vw, 34px));
+  margin: 88px clamp(14px, 2vw, 34px) clamp(14px, 2vw, 34px);
   padding: clamp(28px, 4vw, 66px);
+  padding-bottom: clamp(26px, 5vh, 58px);
   isolation: isolate;
 }
 
@@ -310,6 +313,7 @@
 }
 .homeTitle {
   position: relative;
+  flex-shrink: 0;
   z-index: 4;
   width: min(73vw, 1120px);
   animation: titleIn 850ms 120ms cubic-bezier(.15, .78, .22, 1) both;
@@ -320,7 +324,7 @@
   width: max-content;
   margin: 0;
   font-family: "Nimbus Sans Narrow", "Nimbus Sans", sans-serif;
-  font-size: clamp(5.7rem, 12.4vw, 12.5rem);
+  font-size: clamp(5.7rem, min(12.4vw, 18svh), 12.5rem);
   font-weight: 700;
   line-height: .69;
   letter-spacing: -.073em;
@@ -386,6 +390,8 @@
 }
 
 .homeLead {
+  position: relative;
+  isolation: isolate;
   display: block;
   width: max-content;
   margin: 8px 0 0 .2em;
@@ -398,6 +404,15 @@
   text-underline-offset: 4px;
   text-shadow: 0 2px 14px rgba(0, 0, 0, .7);
   transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.homeLead::before {
+  position: absolute;
+  z-index: -1;
+  inset: -3px -10px -3px -6px;
+  background: linear-gradient(90deg, rgba(7, 17, 38, .9), rgba(7, 17, 38, .65) 86%, transparent);
+  content: "";
+  pointer-events: none;
 }
 
 .homeLead:hover,
@@ -441,13 +456,12 @@
 }
 
 .homeIndex {
-  position: absolute;
+  position: relative;
   z-index: 5;
-  right: clamp(26px, 4vw, 66px);
-  bottom: clamp(26px, 5vh, 58px);
-  left: clamp(26px, 4vw, 66px);
+  flex-shrink: 0;
+  margin-top: auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 1.25fr);
   gap: clamp(18px, 2.2vw, 38px);
 }
 
@@ -477,6 +491,21 @@
 .homePortal:focus-visible { border-color: transparent; transform: translateY(-3px); }
 .homePortal:hover::before,
 .homePortal:focus-visible::before { width: 100%; }
+
+.homeJoin {
+  border-color: var(--lime);
+  background: linear-gradient(135deg, rgba(201, 244, 123, .08), transparent 78%);
+}
+.homeJoin::before { width: 100%; }
+.homeJoin .portalLabel,
+.homeJoin .portalArrow { color: var(--lime); }
+.homeJoin .portalStatus {
+  max-width: none;
+  color: var(--paper-bright);
+  font-size: .9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
 
 .portalNumber {
   padding-bottom: 3px;
@@ -1168,6 +1197,25 @@
   font-weight: 700;
 }
 
+.peopleIdentity { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.peoplePortrait {
+  display: block;
+  width: 72px;
+  height: 84px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.peoplePortrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
+  transform: scale(1.65);
+  transform-origin: 50% 35%;
+}
+
 .peoplePiLine a svg {
   width: 17px;
   transition: transform 180ms ease;
@@ -1203,7 +1251,7 @@
 }
 
 @keyframes titleIn {
-  from { opacity: 0; transform: translateY(25px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -1251,7 +1299,7 @@
 @media (max-width: 1100px) {
   .header { grid-template-columns: minmax(190px, 1fr) auto minmax(128px, .65fr); }
   .hujiLogo { width: 128px; }
-  .homeTitle h1 { font-size: clamp(5rem, 14.7vw, 9rem); }
+  .homeTitle h1 { font-size: clamp(5rem, min(14.7vw, 18svh), 9rem); }
   .unitArtwork { top: 9%; right: -18%; width: 82vw; opacity: .4; }
   .detailGrid { grid-template-columns: 1fr; }
   .detailAside { position: static; }
@@ -1307,6 +1355,7 @@
     inset: auto;
     display: flex;
     flex-direction: column;
+    gap: 32px;
     min-height: calc(100svh - 116px);
     margin: 107px 9px max(9px, env(safe-area-inset-bottom));
     padding: 24px 18px 18px;
@@ -1364,7 +1413,7 @@
     inset: auto;
     width: 100%;
     margin-top: auto;
-    padding-top: 32px;
+    padding-top: 0;
     grid-template-columns: 1fr;
     gap: 4px;
   }
@@ -1411,7 +1460,7 @@
   .peopleJoin { grid-template-columns: 1fr; gap: 20px; }
   .peopleJoin h1 { font-size: clamp(3.35rem, 16vw, 5.4rem); line-height: .82; }
   .peopleJoin > svg { justify-self: end; width: 45px; }
-  .peoplePiLine { grid-template-columns: 1fr; gap: 5px; padding-top: 22px; }
+  .peoplePiLine { grid-template-columns: 1fr; gap: 12px; padding-top: 22px; }
   .footer { grid-template-columns: 1fr; gap: 5px; }
 }
 
@@ -1438,18 +1487,16 @@
   .home .homeTagline { margin-top: 12px; }
   .home .homeInstitution { margin-top: 11px; }
   .home .homeInstitution span { display: none; }
-  .home .homeIndex { padding-top: 25px; }
+  .home .homeStage { gap: 25px; }
 }
 
 @media (max-height: 740px) and (min-width: 721px) {
   .homeTitle h1 { font-size: clamp(5.3rem, 10.8vw, 9.2rem); }
   .homeTagline { margin-top: 18px; }
-  .homeIndex { bottom: 25px; }
   .homeStage { padding-top: 28px; }
 }
 
 @media (min-height: 521px) and (max-height: 680px) and (min-width: 721px) {
-  .home { min-height: 580px; }
   .homeStage { padding-top: 20px; }
   .homeTitle { width: 100%; }
   .homeTitle h1 { font-size: clamp(4.25rem, 14vh, 7rem); }
@@ -1459,18 +1506,21 @@
   .homeLead { margin-top: 6px; }
 }
 
+@media (max-height: 680px) and (min-width: 721px) {
+  .homeJoin .portalNote { display: none; }
+}
+
 @media (max-height: 520px) and (min-width: 721px) {
   .home .header { min-height: 54px; }
   .hujiLogo { width: 128px; }
-  .glassPlane,
-  .homeStage { top: 54px; right: 7px; bottom: 7px; left: 7px; }
-  .homeStage { padding: 14px clamp(16px, 3vw, 42px); }
+  .glassPlane { top: 54px; right: 7px; bottom: 7px; left: 7px; }
+  .homeStage { min-height: calc(100svh - 61px); margin: 54px 7px 7px; padding: 14px clamp(16px, 3vw, 42px); }
   .homeTitle h1 { font-size: clamp(3.35rem, 8.8vw, 6.5rem); }
   .homeTagline { margin-top: 10px; font-size: .95rem; }
   .homeDescription { max-width: 64ch; margin-top: 7px; line-height: 1.35; }
   .homeInstitution { display: none; }
   .homeLead { display: none; }
-  .homeIndex { bottom: 14px; gap: clamp(16px, 3vw, 38px); }
+  .homeIndex { gap: clamp(16px, 3vw, 38px); }
   .homePortal { padding-top: 7px; }
   .portalLabel { font-size: clamp(1.1rem, 2vw, 1.75rem); }
   .glassPlane {
