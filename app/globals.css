@@ -1,0 +1,165 @@
+@font-face {
+  font-family: "Nimbus Sans";
+  src: url("./fonts/NimbusSans-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nimbus Sans Narrow";
+  src: url("./fonts/NimbusSansNarrow-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nimbus Sans Narrow";
+  src: url("./fonts/NimbusSansNarrow-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nimbus Sans";
+  src: url("./fonts/NimbusSans-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nimbus Sans";
+  src: url("./fonts/NimbusSans-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LM Roman";
+  src: url("./fonts/lmroman10-regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "C059";
+  src: url("./fonts/C059-Roman.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "C059";
+  src: url("./fonts/C059-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "C059";
+  src: url("./fonts/C059-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LM Roman";
+  src: url("./fonts/lmroman10-italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LM Roman";
+  src: url("./fonts/lmroman10-bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LM Mono";
+  src: url("./fonts/lmmono10-regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --background: #f4f0e8;
+  --foreground: #101b2d;
+  --card: #ffffff;
+  --card-foreground: #101b2d;
+  --popover: #ffffff;
+  --popover-foreground: #101b2d;
+  --primary: #315cff;
+  --primary-foreground: #ffffff;
+  --secondary: #e9e4da;
+  --secondary-foreground: #101b2d;
+  --muted: #e9e4da;
+  --muted-foreground: #5a6372;
+  --accent: #ff6247;
+  --accent-foreground: #101b2d;
+  --destructive: #d8402c;
+  --border: #cdd2d5;
+  --input: #cdd2d5;
+  --ring: #315cff;
+  --radius: 0.25rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Nimbus Sans", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 5px;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
