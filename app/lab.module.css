@@ -346,12 +346,21 @@
   transform: translateY(-.1em) rotate(-3deg);
 }
 
-.homeTitle p {
+.homeTagline {
   margin: clamp(20px, 3vh, 36px) 0 0 .15em;
   color: rgba(255, 255, 255, .96);
   font-family: "C059", "LM Roman", serif;
   font-size: clamp(1.18rem, 1.55vw, 1.55rem);
   letter-spacing: -.01em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, .7);
+}
+
+.homeDescription {
+  max-width: 64ch;
+  margin: 12px 0 0 .2em;
+  color: rgba(255, 255, 255, .92);
+  font-size: 1rem;
+  line-height: 1.45;
   text-shadow: 0 2px 16px rgba(0, 0, 0, .7);
 }
 
@@ -1331,7 +1340,8 @@
   .homeTitle { width: 100%; }
   .homeTitle h1 { width: 100%; font-size: clamp(3.55rem, 18vw, 6.2rem); line-height: .72; }
   .homeTitle h1 span:nth-child(2) { margin-left: .1em; }
-  .homeTitle p { max-width: 280px; margin-top: 17px; font-size: 1.08rem; line-height: 1.25; }
+  .homeTagline { max-width: 280px; margin-top: 17px; font-size: 1.08rem; line-height: 1.25; }
+  .homeDescription { max-width: 34ch; margin-top: 10px; }
   .homeInstitution { width: 100%; max-width: 305px; gap: 4px; margin-top: 15px; font-size: .96rem; }
   .homeInstitution span { font-size: .925rem; line-height: 1.38; }
   .homeLead { margin-top: 7px; font-size: 1rem; }
@@ -1425,7 +1435,7 @@
     padding: 18px 18px 14px;
   }
   .home .observatoryBackdrop { inset: 68px 0 0; }
-  .home .homeTitle p { margin-top: 12px; }
+  .home .homeTagline { margin-top: 12px; }
   .home .homeInstitution { margin-top: 11px; }
   .home .homeInstitution span { display: none; }
   .home .homeIndex { padding-top: 25px; }
@@ -1433,9 +1443,20 @@
 
 @media (max-height: 740px) and (min-width: 721px) {
   .homeTitle h1 { font-size: clamp(5.3rem, 10.8vw, 9.2rem); }
-  .homeTitle p { margin-top: 18px; }
+  .homeTagline { margin-top: 18px; }
   .homeIndex { bottom: 25px; }
   .homeStage { padding-top: 28px; }
+}
+
+@media (min-height: 521px) and (max-height: 680px) and (min-width: 721px) {
+  .home { min-height: 580px; }
+  .homeStage { padding-top: 20px; }
+  .homeTitle { width: 100%; }
+  .homeTitle h1 { font-size: clamp(4.25rem, 14vh, 7rem); }
+  .homeTagline { margin-top: 12px; font-size: 1.18rem; }
+  .homeDescription { margin-top: 10px; line-height: 1.4; }
+  .homeInstitution { margin-top: 12px; }
+  .homeLead { margin-top: 6px; }
 }
 
 @media (max-height: 520px) and (min-width: 721px) {
@@ -1445,7 +1466,8 @@
   .homeStage { top: 54px; right: 7px; bottom: 7px; left: 7px; }
   .homeStage { padding: 14px clamp(16px, 3vw, 42px); }
   .homeTitle h1 { font-size: clamp(3.35rem, 8.8vw, 6.5rem); }
-  .homeTitle p { margin-top: 10px; font-size: .95rem; }
+  .homeTagline { margin-top: 10px; font-size: .95rem; }
+  .homeDescription { max-width: 64ch; margin-top: 7px; line-height: 1.35; }
   .homeInstitution { display: none; }
   .homeLead { display: none; }
   .homeIndex { bottom: 14px; gap: clamp(16px, 3vw, 38px); }

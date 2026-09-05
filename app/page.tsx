@@ -23,7 +23,10 @@ export default function Home() {
             <span>Agentic</span>
             <span className={styles.marketLine}>Markets <em>Lab</em></span>
           </h1>
-          <p>Learning agents, markets, and institutions.</p>
+          <p className={styles.homeTagline}>Learning agents, markets, and collective systems.</p>
+          <p className={styles.homeDescription}>
+            We study how human and algorithmic agents learn and interact, and how their interactions shape economic systems.
+          </p>
           <Link className={styles.homeInstitution} href="/about">
             A new interdisciplinary lab at The Hebrew University of Jerusalem
             <span>Department of Data Science · Hebrew University Business School ↗</span>
