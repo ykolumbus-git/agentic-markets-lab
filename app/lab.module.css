@@ -171,7 +171,7 @@
   height: 100%;
   opacity: 1;
   filter: blur(.1px) drop-shadow(0 40px 80px rgba(0, 0, 0, .34));
-  transform: translate3d(-8%, 7%, 0) scale(1.14);
+  transform: translate(-8%, 7%) scale(1.14);
   animation: landscapeFloat 16s ease-in-out infinite alternate;
 }
 
@@ -1463,6 +1463,26 @@
   .orbTwo,
   .saddleBands { animation: none; will-change: auto; }
   .unitArtwork { opacity: .3; animation: none; }
+  .unitEdges line { display: none; animation: none; }
+  .unitEdges line:nth-child(4n + 1) { display: block; }
+  .unitPoints circle { display: none; filter: none; }
+  .unitPoints circle:nth-child(2n + 1) { display: block; }
+}
+
+/* Keep the same lightweight artwork on phones in either orientation.
+   Only the agent signals move: scaling the masked SVG and filtering each
+   moving path can repeatedly invalidate its raster layer during rotation. */
+@media (hover: none), (pointer: coarse), (max-width: 720px), (max-height: 520px) and (min-width: 721px) {
+  .observatoryBackdrop { transform: none; transition: none; will-change: auto; }
+  .observatoryBackdrop svg { animation: none; filter: none; }
+  .orbOne,
+  .orbTwo,
+  .saddleBands { animation: none; will-change: auto; }
+  .glassPlane { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .glassPlane::before { opacity: .42; transform: translateX(115%) skewX(-8deg); animation: none; }
+  .agentTrack:nth-child(n + 4) { display: none; }
+  .agentSignal { stroke-width: 2.25; filter: none; }
+  .unitArtwork { mix-blend-mode: normal; transform: rotate(-5deg); animation: none; }
   .unitEdges line { display: none; animation: none; }
   .unitEdges line:nth-child(4n + 1) { display: block; }
   .unitPoints circle { display: none; filter: none; }
