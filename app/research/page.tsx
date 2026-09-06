@@ -29,7 +29,7 @@ export default function ResearchPage() {
               <span className={styles.rowNumber}>{theme.index}</span>
               <h2>{theme.title}</h2>
               <ResearchGlyph index={theme.index} />
-              <span className={styles.rowArrow} aria-hidden="true">↗</span>
+              <span className={styles.rowArrow} aria-hidden="true">→</span>
             </Link>
           ))}
         </div>

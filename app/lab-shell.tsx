@@ -183,8 +183,6 @@ const agentTrajectories = [
 export function ObservatoryBackdrop() {
   return (
     <div className={styles.observatoryBackdrop} aria-hidden="true">
-      <div className={styles.orbOne} />
-      <div className={styles.orbTwo} />
       <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" focusable="false">
         <defs>
           <radialGradient id="observatory-fade">
@@ -271,43 +269,42 @@ export function ResearchGlyph({ index, large = false }: { index: string; large?:
           <path className={styles.glyphAxis} d="M28 24V210H397" />
           <path className={styles.glyphBlue} d="M29 188C90 186 120 165 163 131S261 65 397 34" />
           <path className={styles.glyphCoral} d="M29 45C102 51 124 77 172 108S291 169 397 190" />
-          <path className={styles.glyphLime} d="M29 143C84 123 139 130 191 141S305 118 397 97" />
+          <path className={styles.glyphInk} d="M29 143C84 123 139 130 191 141S305 118 397 97" />
           <line className={styles.glyphGuide} x1="185" y1="26" x2="185" y2="210" />
         </svg>
       )}
       {index === "02" && (
         <svg {...common}>
-          {Array.from({ length: 17 }, (_, i) => {
-            const angle = (i / 17) * Math.PI * 2;
-            const x = 210 + Math.cos(angle) * (i % 3 === 0 ? 92 : 73);
-            const y = 120 + Math.sin(angle) * (i % 4 === 0 ? 86 : 64);
+          {Array.from({ length: 9 }, (_, i) => {
+            const angle = (i / 9) * Math.PI * 2;
+            const x = 210 + Math.cos(angle) * 150;
+            const y = 120 + Math.sin(angle) * 82;
             return <line className={styles.glyphThread} key={`l-${i}`} x1="210" y1="120" x2={x} y2={y} />;
           })}
-          {Array.from({ length: 17 }, (_, i) => {
-            const angle = (i / 17) * Math.PI * 2;
-            const x = 210 + Math.cos(angle) * (i % 3 === 0 ? 92 : 73);
-            const y = 120 + Math.sin(angle) * (i % 4 === 0 ? 86 : 64);
-            return <circle className={i % 5 === 0 ? styles.glyphNodeHot : styles.glyphNode} key={`n-${i}`} cx={x} cy={y} r={i % 5 === 0 ? 6 : 3.5} />;
+          {Array.from({ length: 9 }, (_, i) => {
+            const angle = (i / 9) * Math.PI * 2;
+            const x = 210 + Math.cos(angle) * 150;
+            const y = 120 + Math.sin(angle) * 82;
+            return <circle className={i === 0 ? styles.glyphNodeHot : styles.glyphNode} key={`n-${i}`} cx={x} cy={y} r="4.5" />;
           })}
-          <circle className={styles.glyphCore} cx="210" cy="120" r="12" />
+          <circle className={styles.glyphCore} cx="210" cy="120" r="7" />
         </svg>
       )}
       {index === "03" && (
         <svg {...common}>
           <path className={styles.glyphBlue} d="M26 189C79 191 88 147 128 148S181 171 217 128 290 83 397 67" />
           <path className={styles.glyphCoral} d="M26 65C83 65 101 99 145 102S221 71 261 108 328 157 397 153" />
-          {[77, 145, 217, 284, 351].map((x, i) => <circle className={i === 2 ? styles.glyphNodeHot : styles.glyphNode} key={x} cx={x} cy={i % 2 ? 102 : 148} r={i === 2 ? 7 : 4} />)}
+          {[77, 145, 217, 284, 351].map((x, i) => <circle className={i === 2 ? styles.glyphNodeHot : styles.glyphNode} key={x} cx={x} cy={i % 2 ? 102 : 148} r="4.5" />)}
           <path className={styles.glyphBracket} d="M66 35H352M66 35V53M352 35V53" />
         </svg>
       )}
       {index === "04" && (
         <svg {...common}>
           <circle className={styles.glyphOrbit} cx="210" cy="120" r="83" />
-          <circle className={styles.glyphOrbit} cx="210" cy="120" r="48" />
           <path className={styles.glyphBlue} d="M68 121C107 65 144 66 210 120S320 178 355 104" />
           <path className={styles.glyphCoral} d="M70 158C136 176 165 161 210 120S290 59 350 77" />
-          <circle className={styles.glyphCore} cx="210" cy="120" r="9" />
-          <circle className={styles.glyphNodeHot} cx="350" cy="77" r="6" />
+          <circle className={styles.glyphCore} cx="210" cy="120" r="7" />
+          <circle className={styles.glyphNodeHot} cx="350" cy="77" r="4.5" />
         </svg>
       )}
     </figure>

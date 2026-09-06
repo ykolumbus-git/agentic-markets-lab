@@ -51,7 +51,7 @@ export default function AboutPage() {
 
         <div className={styles.aboutRail}>
           <div><span>Approach</span><strong>Mathematical theory · Computation · Behavioral experiments</strong></div>
-          <Link href="/join">Take part in establishing the new lab <span aria-hidden="true">↗</span></Link>
+          <Link href="/join">Take part in establishing the new lab <span aria-hidden="true">→</span></Link>
         </div>
       </section>
     </PageFrame>

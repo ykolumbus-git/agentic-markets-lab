@@ -1,5 +1,4 @@
 import Link from "next/link";
-import HomeMotion from "./home-motion";
 import { LabHeader, ObservatoryBackdrop, UnitDistanceArtwork } from "./lab-shell";
 import styles from "./lab.module.css";
 
@@ -12,7 +11,6 @@ const portals = [
 export default function Home() {
   return (
     <div className={styles.home} data-spatial-home>
-      <HomeMotion />
       <ObservatoryBackdrop />
       <div className={styles.glassPlane} aria-hidden="true" />
       <a className={styles.skipLink} href="#main-content">Skip to content</a>
@@ -29,7 +27,7 @@ export default function Home() {
           </p>
           <Link className={styles.homeInstitution} href="/about">
             A new interdisciplinary lab at The Hebrew University of Jerusalem
-            <span>Department of Data Science · Hebrew University Business School ↗</span>
+            <span>Department of Data Science · Hebrew University Business School →</span>
           </Link>
           <Link className={styles.homeLead} href="/people">Led by Yoav Kolumbus.</Link>
         </div>
@@ -43,7 +41,7 @@ export default function Home() {
                 {"status" in portal && <small className={styles.portalStatus}>{portal.status}</small>}
                 {"note" in portal && portal.note && <small className={styles.portalNote}>{portal.note}</small>}
               </span>
-              <span className={styles.portalArrow} aria-hidden="true">↗</span>
+              <span className={styles.portalArrow} aria-hidden="true">→</span>
             </Link>
           ))}
         </nav>
