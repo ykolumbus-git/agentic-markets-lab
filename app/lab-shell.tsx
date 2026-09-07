@@ -129,27 +129,16 @@ const unitEdges: UnitEdge[] = gridPoints.flatMap((from) =>
 type ProjectedPoint = { x: number; y: number };
 const saddleRange = Array.from({ length: 14 }, (_, index) => -1.7 + index * (3.4 / 13));
 const saddleSamples = Array.from({ length: 55 }, (_, index) => -1.7 + index * (3.4 / 54));
-const saddleElevation = 70 * Math.PI / 180;
-const saddleScale = 250;
 
 function projectPoint(x: number, y: number, z: number): ProjectedPoint {
   const diagonalX = (x - y) * Math.SQRT1_2;
   const diagonalY = (x + y) * Math.SQRT1_2;
-  // Orthographic camera, shared by the surface, grid, and moving agents.
-  // At 70 degrees the projected surface never folds over itself on this domain:
-  // tan(elevation) > 0.84 * 1.7 * sqrt(2).
-  return {
-    x: 800 + diagonalX * saddleScale,
-    y: 455 + saddleScale * (diagonalY * Math.sin(saddleElevation) - z * Math.cos(saddleElevation)),
-  };
+  const perspective = 1 + diagonalY * 0.045;
+  return { x: 800 + diagonalX * 365 * perspective, y: 455 + diagonalY * 132 - z * 210 };
 }
 
 function saddleHeight(x: number, y: number) {
   return 0.42 * (x * x - y * y);
-}
-
-function projectSaddlePoint(x: number, y: number) {
-  return projectPoint(x, y, saddleHeight(x, y));
 }
 
 function pathFrom(points: ProjectedPoint[]) {
@@ -159,17 +148,17 @@ function pathFrom(points: ProjectedPoint[]) {
 }
 
 const saddleLinesX = saddleRange.map((x) =>
-  pathFrom(saddleSamples.map((y) => projectSaddlePoint(x, y))),
+  pathFrom(saddleSamples.map((y) => projectPoint(x, y, saddleHeight(x, y)))),
 );
 const saddleLinesY = saddleRange.map((y) =>
-  pathFrom(saddleSamples.map((x) => projectSaddlePoint(x, y))),
+  pathFrom(saddleSamples.map((x) => projectPoint(x, y, saddleHeight(x, y)))),
 );
 const saddleBands = saddleRange.slice(0, -1).map((x, index) => {
   const nextX = saddleRange[index + 1];
-  const forward = saddleSamples.map((y) => projectSaddlePoint(x, y));
+  const forward = saddleSamples.map((y) => projectPoint(x, y, saddleHeight(x, y)));
   const backward = [...saddleSamples]
     .reverse()
-    .map((y) => projectSaddlePoint(nextX, y));
+    .map((y) => projectPoint(nextX, y, saddleHeight(nextX, y)));
   return `${pathFrom([...forward, ...backward])} Z`;
 });
 const agentTrajectories = [
@@ -185,7 +174,7 @@ const agentTrajectories = [
     const convergence = 0.14 + 0.86 * (1 - Math.exp(-Math.pow(x / 0.56, 2)));
     const interaction = 0.12 * Math.sin(x * 3.1 + phase) * Math.exp(-Math.pow(x / 1.12, 2));
     const y = center + offset * convergence + interaction;
-    return projectSaddlePoint(x, y);
+    return projectPoint(x, y, saddleHeight(x, y) + 0.045);
   });
 
   return { points, duration, delay };
@@ -233,6 +222,7 @@ export function ObservatoryBackdrop() {
                   "--agent-delay": `${delay}s`,
                 } as CSSProperties}
               >
+                <path className={styles.agentTrace} d={pathFrom(points)} />
                 <path className={styles.agentSignal} d={pathFrom(points)} pathLength={1} />
               </g>
             ))}
@@ -255,14 +245,14 @@ export function UnitDistanceArtwork() {
               y1={from.y}
               x2={to.x}
               y2={to.y}
-              data-family={family}
+              pathLength={1}
               style={{ "--family": family } as CSSProperties}
             />
           ))}
         </g>
         <g className={styles.unitPoints}>
           {gridPoints.map((point) => (
-            <circle key={`${point.i}-${point.j}`} cx={point.x} cy={point.y} r="2.2" />
+            <circle key={`${point.i}-${point.j}`} cx={point.x} cy={point.y} r="2.65" />
           ))}
         </g>
       </svg>

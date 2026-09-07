@@ -198,9 +198,14 @@
 .agentTrack:nth-child(4) path { stroke: rgba(236, 243, 255, .82); }
 .agentTrack:nth-child(5) path { stroke: rgba(151, 179, 255, .9); }
 
+.agentTrace {
+  stroke-width: 1.25;
+  opacity: .2;
+}
+
 .agentSignal {
   stroke-width: 2;
-  stroke-dasharray: .035 .965;
+  stroke-dasharray: .15 .85;
   stroke-dashoffset: 1;
   opacity: .92;
   animation: agentFlow var(--agent-duration) linear var(--agent-delay) infinite;
@@ -355,10 +360,10 @@
   width: min(63vw, 970px);
   aspect-ratio: 1.25;
   margin: 0;
-  opacity: .28;
+  opacity: .14;
   mask-image: linear-gradient(to right, transparent 12%, rgba(0, 0, 0, .3) 48%, black 84%);
   mix-blend-mode: screen;
-  transform: rotate(-5deg);
+  transform: rotate(-5deg) perspective(900px) rotateY(-7deg);
   transform-origin: 55% 45%;
   pointer-events: none;
 }
@@ -366,13 +371,14 @@
 .unitArtwork svg { display: block; width: 100%; height: 100%; overflow: visible; }
 
 .unitEdges line {
-  stroke: rgba(184, 202, 255, .48);
-  stroke-width: .85;
+  stroke: rgba(168, 189, 255, .29);
+  stroke-width: 1.05;
   vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
 }
 
 .unitPoints circle {
-  fill: rgba(248, 251, 255, .88);
+  fill: rgba(248, 251, 255, .92);
 }
 
 .homeIndex {
@@ -1146,16 +1152,17 @@
 .footer span { opacity: .8; }
 
 @keyframes agentFlow {
-  0% { stroke-dashoffset: 1; opacity: 0; }
-  4%, 96% { opacity: .94; }
-  100% { stroke-dashoffset: 0; opacity: 0; }
+  0% { stroke-dashoffset: 1; opacity: .08; }
+  10% { opacity: .94; }
+  86% { opacity: .94; }
+  100% { stroke-dashoffset: 0; opacity: .08; }
 }
 
 @media (max-width: 1100px) {
   .header { grid-template-columns: minmax(190px, 1fr) auto minmax(128px, .65fr); }
   .hujiLogo { width: 128px; }
   .homeTitle h1 { font-size: clamp(5rem, min(14.7vw, 18svh), 9rem); }
-  .unitArtwork { top: 9%; right: -18%; width: 82vw; opacity: .26; }
+  .unitArtwork { top: 9%; right: -18%; width: 82vw; opacity: .12; }
   .detailGrid { grid-template-columns: 1fr; }
   .detailAside { position: static; }
   .researchGlyphLarge { width: min(500px, 75vw); }
@@ -1233,6 +1240,7 @@
   .saddleBlue path { stroke: rgba(126, 157, 255, .74); }
   .saddleWhite path { stroke: rgba(244, 248, 255, .44); }
   .agentTrack:nth-child(n + 4) { display: none; }
+  .agentTrace { opacity: .16; }
   .agentSignal { stroke-width: 2.25; filter: none; }
   .homeTitle { width: 100%; }
   .homeTitle h1 { width: 100%; font-size: clamp(3.55rem, 18vw, 6.2rem); line-height: .9; }
@@ -1246,16 +1254,16 @@
     top: 34%;
     right: -42%;
     width: 122vw;
-    opacity: .24;
+    opacity: .1;
     mix-blend-mode: normal;
     animation: none;
     -webkit-mask-image: linear-gradient(to left, black 30%, rgba(0, 0, 0, .75) 58%, transparent 96%);
     mask-image: linear-gradient(to left, black 30%, rgba(0, 0, 0, .75) 58%, transparent 96%);
   }
   .unitEdges line { display: none; animation: none; }
-  .unitEdges line[data-family="0"],
-  .unitEdges line[data-family="3"] { display: block; }
-  .unitPoints circle { opacity: .75; }
+  .unitEdges line:nth-child(8n + 1) { display: block; }
+  .unitPoints circle { display: none; filter: none; }
+  .unitPoints circle:nth-child(2n + 1) { display: block; }
   .homeIndex {
     position: relative;
     inset: auto;
@@ -1362,11 +1370,11 @@
   .observatoryBackdrop { transform: none; transition: none; will-change: auto; }
   .observatoryBackdrop svg { filter: none; }
   .saddleBands { animation: none; will-change: auto; }
-  .unitArtwork { opacity: .24; }
+  .unitArtwork { opacity: .1; }
   .unitEdges line { display: none; animation: none; }
-  .unitEdges line[data-family="0"],
-  .unitEdges line[data-family="3"] { display: block; }
-  .unitPoints circle { opacity: .75; }
+  .unitEdges line:nth-child(8n + 1) { display: block; }
+  .unitPoints circle { display: none; filter: none; }
+  .unitPoints circle:nth-child(2n + 1) { display: block; }
 }
 
 /* Keep the same lightweight artwork on phones in either orientation.
@@ -1381,9 +1389,9 @@
   .agentSignal { stroke-width: 2.25; filter: none; }
   .unitArtwork { mix-blend-mode: normal; transform: rotate(-5deg); animation: none; }
   .unitEdges line { display: none; animation: none; }
-  .unitEdges line[data-family="0"],
-  .unitEdges line[data-family="3"] { display: block; }
-  .unitPoints circle { opacity: .75; }
+  .unitEdges line:nth-child(8n + 1) { display: block; }
+  .unitPoints circle { display: none; filter: none; }
+  .unitPoints circle:nth-child(2n + 1) { display: block; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1396,7 +1404,7 @@
   .unitEdges line,
   .homePortal { animation: none; }
 
-  .agentSignal { stroke-dashoffset: .5; opacity: .65; filter: none; }
+  .agentSignal { stroke-dasharray: none; opacity: .3; filter: none; }
   .observatoryBackdrop { transform: none; transition: none; }
 }
 
