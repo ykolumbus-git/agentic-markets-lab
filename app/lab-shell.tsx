@@ -28,7 +28,14 @@ export function LabHeader({ active, inverse = false }: { active: LabSection; inv
             <path className={styles.markCrossbar} d="M12.7 17.8Q16.1 19.2 19.7 16.9" />
           </svg>
         </span>
-        <span>Agentic Markets Lab</span>
+        <span>
+          Agentic Markets Lab
+          {active !== "home" && (
+            <span className={styles.wordmarkHomeCue}>
+              <span className={styles.wordmarkHomeSeparator}>: </span>Home
+            </span>
+          )}
+        </span>
       </Link>
       <nav className={styles.primaryNav} aria-label="Main navigation">
         {navigation.map((item) => (

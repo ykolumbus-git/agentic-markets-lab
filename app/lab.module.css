@@ -59,6 +59,8 @@
   letter-spacing: -.015em;
 }
 
+.wordmarkHomeCue { white-space: nowrap; }
+
 .wordmarkSymbol {
   display: block;
   width: 34px;
@@ -464,7 +466,7 @@
 
 .portalLabel {
   font-family: "Nimbus Sans Narrow", "Nimbus Sans", sans-serif;
-  font-size: clamp(1.4rem, 2.4vw, 2.45rem);
+  font-size: clamp(1.47rem, 2.52vw, 2.57rem);
   font-weight: 700;
   line-height: .95;
   letter-spacing: -.035em;
@@ -1106,8 +1108,8 @@
 
 .peoplePortrait {
   display: block;
-  width: 72px;
-  height: 84px;
+  width: 84px;
+  height: 98px;
   flex: 0 0 auto;
   overflow: hidden;
   border-radius: 5px;
@@ -1160,6 +1162,8 @@
 
 @media (max-width: 1100px) {
   .header { grid-template-columns: minmax(190px, 1fr) auto minmax(128px, .65fr); }
+  .wordmarkHomeCue { display: block; font-size: .875rem; line-height: 1.1; }
+  .wordmarkHomeSeparator { display: none; }
   .hujiLogo { width: 128px; }
   .homeTitle h1 { font-size: clamp(5rem, min(14.7vw, 18svh), 9rem); }
   .unitArtwork { top: 9%; right: -18%; width: 82vw; opacity: .14; }
@@ -1274,7 +1278,7 @@
     gap: 4px;
   }
   .homePortal { min-height: 49px; padding: 8px 0 2px; }
-  .portalLabel { font-size: 1.43rem; }
+  .portalLabel { font-size: 1.5rem; }
   .portalCopy { gap: 2px; }
   .portalCopy small { font-size: .95rem; }
   .portalCopy .portalNote { font-size: 1.08rem; line-height: 1.12; }
@@ -1361,7 +1365,7 @@
   .homeInstitution { margin-top: 18px; }
   .homeIndex { gap: clamp(16px, 3vw, 38px); }
   .homePortal { padding-top: 7px; }
-  .portalLabel { font-size: clamp(1.1rem, 2vw, 1.75rem); }
+  .portalLabel { font-size: clamp(1.155rem, 2.1vw, 1.8375rem); }
   .glassPlane {
     background: linear-gradient(125deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .018) 48%, rgba(89, 125, 255, .045));
     -webkit-backdrop-filter: none;

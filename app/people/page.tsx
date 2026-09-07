@@ -20,7 +20,7 @@ export default function PeoplePage() {
           <h1 id="people-title" className={styles.eyebrow}>People</h1>
           <div className={styles.peopleIdentity}>
             <span className={styles.peoplePortrait}>
-              <Image src={portrait} alt="Yoav Kolumbus" sizes="72px" />
+              <Image src={portrait} alt="Yoav Kolumbus" sizes="84px" />
             </span>
             <div className={styles.peopleIdentityCopy}>
               <a href={principalInvestigatorUrl} target="_blank" rel="noreferrer">
