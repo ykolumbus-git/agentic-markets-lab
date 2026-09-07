@@ -174,7 +174,7 @@ const agentTrajectories = [
     const convergence = 0.14 + 0.86 * (1 - Math.exp(-Math.pow(x / 0.56, 2)));
     const interaction = 0.12 * Math.sin(x * 3.1 + phase) * Math.exp(-Math.pow(x / 1.12, 2));
     const y = center + offset * convergence + interaction;
-    return projectPoint(x, y, saddleHeight(x, y) + 0.045);
+    return projectPoint(x, y, saddleHeight(x, y) + 0.015);
   });
 
   return { points, duration, delay };

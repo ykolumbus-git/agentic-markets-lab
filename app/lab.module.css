@@ -200,12 +200,12 @@
 
 .agentTrace {
   stroke-width: 1.25;
-  opacity: .2;
+  opacity: .16;
 }
 
 .agentSignal {
   stroke-width: 2;
-  stroke-dasharray: .15 .85;
+  stroke-dasharray: .12 .88;
   stroke-dashoffset: 1;
   opacity: .92;
   animation: agentFlow var(--agent-duration) linear var(--agent-delay) infinite;
@@ -360,7 +360,7 @@
   width: min(63vw, 970px);
   aspect-ratio: 1.25;
   margin: 0;
-  opacity: .14;
+  opacity: .16;
   mask-image: linear-gradient(to right, transparent 12%, rgba(0, 0, 0, .3) 48%, black 84%);
   mix-blend-mode: screen;
   transform: rotate(-5deg) perspective(900px) rotateY(-7deg);
@@ -1162,7 +1162,7 @@
   .header { grid-template-columns: minmax(190px, 1fr) auto minmax(128px, .65fr); }
   .hujiLogo { width: 128px; }
   .homeTitle h1 { font-size: clamp(5rem, min(14.7vw, 18svh), 9rem); }
-  .unitArtwork { top: 9%; right: -18%; width: 82vw; opacity: .12; }
+  .unitArtwork { top: 9%; right: -18%; width: 82vw; opacity: .14; }
   .detailGrid { grid-template-columns: 1fr; }
   .detailAside { position: static; }
   .researchGlyphLarge { width: min(500px, 75vw); }
@@ -1240,7 +1240,7 @@
   .saddleBlue path { stroke: rgba(126, 157, 255, .74); }
   .saddleWhite path { stroke: rgba(244, 248, 255, .44); }
   .agentTrack:nth-child(n + 4) { display: none; }
-  .agentTrace { opacity: .16; }
+  .agentTrace { opacity: .13; }
   .agentSignal { stroke-width: 2.25; filter: none; }
   .homeTitle { width: 100%; }
   .homeTitle h1 { width: 100%; font-size: clamp(3.55rem, 18vw, 6.2rem); line-height: .9; }
@@ -1254,7 +1254,7 @@
     top: 34%;
     right: -42%;
     width: 122vw;
-    opacity: .1;
+    opacity: .115;
     mix-blend-mode: normal;
     animation: none;
     -webkit-mask-image: linear-gradient(to left, black 30%, rgba(0, 0, 0, .75) 58%, transparent 96%);
@@ -1370,7 +1370,7 @@
   .observatoryBackdrop { transform: none; transition: none; will-change: auto; }
   .observatoryBackdrop svg { filter: none; }
   .saddleBands { animation: none; will-change: auto; }
-  .unitArtwork { opacity: .1; }
+  .unitArtwork { opacity: .115; }
   .unitEdges line { display: none; animation: none; }
   .unitEdges line:nth-child(8n + 1) { display: block; }
   .unitPoints circle { display: none; filter: none; }
