@@ -18,7 +18,11 @@ const navigation = [
 export function LabHeader({ active, inverse = false }: { active: LabSection; inverse?: boolean }) {
   return (
     <header className={`${styles.header} ${inverse ? styles.headerInverse : ""}`}>
-      <Link className={styles.wordmark} href="/" aria-label="Agentic Markets Lab home">
+      <Link
+        className={styles.wordmark}
+        href="/"
+        aria-label={active === "home" ? "Agentic Markets Lab home" : "Agentic Markets Lab — Back to home"}
+      >
         <span className={styles.wordmarkSymbol} aria-hidden="true">
           <svg viewBox="0 0 32 32" focusable="false">
             <path className={styles.markOrbit} d="M7.1 5.9A13.2 13.2 0 0 1 28.7 13.2" />
@@ -32,7 +36,7 @@ export function LabHeader({ active, inverse = false }: { active: LabSection; inv
           Agentic Markets Lab
           {active !== "home" && (
             <span className={styles.wordmarkHomeCue}>
-              <span className={styles.wordmarkHomeSeparator}>: </span>Home
+              <span aria-hidden="true">← </span>Back to home
             </span>
           )}
         </span>
